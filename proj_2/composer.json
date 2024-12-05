@@ -1,0 +1,19 @@
+{
+  "name": "shalupenb/proj_2",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Danya Gichak",
+      "email": "wemlirz35@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/models"
+    }
+  }
+}
