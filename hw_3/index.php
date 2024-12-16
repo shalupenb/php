@@ -1,5 +1,5 @@
 <?php
-session_start(); // Для збереження даних між сторінками
+session_start();
 
 if (!isset($_SESSION['page'])) {
     $_SESSION['page'] = 1;
@@ -12,7 +12,6 @@ $page = $_SESSION['page'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($page === 1) {
-        // Оцінка відповідей 1-ї сторінки
         $correct_answers = ['1' => 'A', '2' => 'B', '3' => 'C', '4' => 'D', '5' => 'A', '6' => 'B', '7' => 'C', '8' => 'D', '9' => 'A', '10' => 'B'];
         $user_answers = $_POST['answers'] ?? [];
         $score = 0;
@@ -21,11 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $score++;
             }
         }
-        $_SESSION['page1_score'] = $score; // 1 бал за кожну правильну відповідь
+        $_SESSION['page1_score'] = $score;
     }
 
     if ($page === 2) {
-        // Оцінка відповідей 2-ї сторінки
         $correct_answers = [
             '1' => ['A', 'B'], '2' => ['C'], '3' => ['C', 'D'], '4' => ['A'], '5' => ['B', 'C'],
             '6' => ['B'], '7' => ['B', 'C', 'D'], '8' => ['B', 'D'], '9' => ['A', 'C'], '10' => ['A', 'B', 'C']
@@ -37,11 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $score++;
             }
         }
-        $_SESSION['page2_score'] = $score * 3; // 3 бали за кожну правильну відповідь
+        $_SESSION['page2_score'] = $score * 3;
     }
 
     if ($page === 3) {
-        // Оцінка відповідей 3-ї сторінки
         $correct_answers = ['1' => 'word1', '2' => 'word2', '3' => 'word3', '4' => 'word4', '5' => 'word5',
             '6' => 'word6', '7' => 'word7', '8' => 'word8', '9' => 'word9', '10' => 'word10'];
         $user_answers = $_POST['answers'] ?? [];
@@ -59,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Рендеринг сторінок
 function renderPage1() {
     echo '<form method="POST">';
     for ($i = 1; $i <= 10; $i++) {
@@ -98,10 +94,9 @@ function renderPage3() {
 function renderResults() {
     echo '<h1>Результат</h1>';
     echo '<p>Ваш результат: ' . $_SESSION['score'] . ' балів.</p>';
-    session_destroy(); // Очистити дані
+    session_destroy();
 }
 
-// Вибір сторінки для відображення
 if ($page === 1) {
     renderPage1();
 } elseif ($page === 2) {
@@ -111,4 +106,3 @@ if ($page === 1) {
 } else {
     renderResults();
 }
-?>
