@@ -8,10 +8,10 @@ function renderCircles($count = 10) {
     echo "</div>";
 }
 renderCircles();
+//----------4
 function binaryToHex($binary) {
     $decimal = bindec($binary);
     $hex = dechex($decimal);
     return $hex;
 }
 echo "<p>Number 1010 in hex: " . binaryToHex("1010") . "</p>";
-//----------4
